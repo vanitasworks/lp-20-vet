@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>にじの動物病院 | 元気いっぱいのペットのために</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+      background: white;
+      color: #1a2c1a;
+      overflow-x: hidden;
+    }
+
+    /* ===== FLAT GEOMETRIC DESIGN ===== */
+
+    /* Emergency banner */
+    .emergency { background: #ff4757; color: white; text-align: center; padding: 10px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.05em; }
+
+    nav {
+      background: white; padding: 0 48px; height: 72px;
+      display: flex; justify-content: space-between; align-items: center;
+      box-shadow: 0 2px 0 #e8f5e8; position: sticky; top: 0; z-index: 100;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo-shape { width: 40px; height: 40px; background: #4caf50; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+    .nav-logo-text { font-size: 1rem; font-weight: 800; color: #1a2c1a; }
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-tel { font-size: 1.1rem; font-weight: 800; color: #4caf50; }
+    .nav-emergency { background: #ff4757; color: white; padding: 8px 16px; text-decoration: none; border-radius: 8px; font-size: 0.78rem; font-weight: 700; }
+    .nav-reserve { background: #4caf50; color: white; padding: 8px 16px; text-decoration: none; border-radius: 8px; font-size: 0.78rem; font-weight: 700; transition: background 0.3s; }
+    .nav-reserve:hover { background: #43a047; }
+
+    /* ===== HERO: BOLD GEOMETRIC ===== */
+    .hero {
+      background: #f0faf0; padding: 64px 48px;
+      display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center;
+      position: relative; overflow: hidden;
+    }
+    /* Geometric shapes */
+    .geo-circle-1 { position: absolute; right: -60px; top: -60px; width: 300px; height: 300px; background: #c8e6c9; border-radius: 50%; z-index: 0; }
+    .geo-circle-2 { position: absolute; left: 40%; bottom: -80px; width: 200px; height: 200px; background: #a5d6a7; border-radius: 50%; z-index: 0; }
+    .geo-rect { position: absolute; right: 30%; top: 20px; width: 40px; height: 120px; background: #4caf50; opacity: 0.1; transform: rotate(30deg); border-radius: 20px; }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-tags { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
+    .hero-tag { padding: 6px 14px; border-radius: 40px; font-size: 0.72rem; font-weight: 700; }
+    .hero-tag.green { background: #4caf50; color: white; }
+    .hero-tag.outline { border: 2px solid #4caf50; color: #4caf50; }
+    h1 { font-size: clamp(2rem, 5vw, 3.8rem); font-weight: 900; line-height: 1.2; margin-bottom: 20px; }
+    h1 .line-green { color: #4caf50; }
+    .hero-desc { font-size: 0.95rem; color: #4a6a4a; line-height: 1.9; margin-bottom: 40px; }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 48px; }
+    .btn-green { display: inline-flex; align-items: center; gap: 10px; padding: 16px 28px; background: #4caf50; color: white; text-decoration: none; border-radius: 12px; font-weight: 700; font-size: 0.95rem; transition: all 0.3s; box-shadow: 0 4px 16px rgba(76,175,80,0.3); }
+    .btn-green:hover { background: #43a047; transform: translateY(-2px); }
+    .btn-red-outline { display: inline-flex; align-items: center; gap: 10px; padding: 16px 28px; border: 2px solid #ff4757; color: #ff4757; text-decoration: none; border-radius: 12px; font-weight: 700; font-size: 0.95rem; transition: all 0.3s; }
+    .btn-red-outline:hover { background: #ff4757; color: white; }
+    .hero-hours { display: grid; grid-template-columns: repeat(3, auto); gap: 16px; }
+    .hour-chip { background: white; border-radius: 12px; padding: 16px 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .hour-chip .day { font-size: 0.65rem; color: #888; font-weight: 600; margin-bottom: 4px; }
+    .hour-chip .time { font-size: 0.88rem; font-weight: 700; }
+    .hour-chip .time.closed { color: #ccc; }
+
+    /* HERO VISUAL */
+    .hero-visual { position: relative; z-index: 1; }
+    .hero-main-shape {
+      width: 360px; height: 360px; background: #4caf50;
+      border-radius: 60% 40% 50% 50% / 50% 50% 40% 60%;
+      display: flex; align-items: center; justify-content: center; font-size: 8rem;
+    }
+    .hero-floating { position: absolute; background: white; border-radius: 16px; padding: 12px 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); font-size: 0.78rem; font-weight: 700; }
+    .hero-floating.f1 { top: 20px; right: -20px; }
+    .hero-floating.f2 { bottom: 40px; left: -30px; }
+
+    /* ===== DEPARTMENTS: ICON GRID ===== */
+    .departments { padding: 80px 48px; background: white; }
+    .dept-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 48px; }
+    .dept-header h2 { font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 900; }
+    .dept-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
+    .dept-card { background: #f0faf0; border-radius: 20px; padding: 28px 16px; text-align: center; cursor: pointer; transition: all 0.3s; border: 2px solid transparent; }
+    .dept-card:hover { background: #4caf50; color: white; border-color: #4caf50; transform: translateY(-6px); }
+    .dept-card:hover .dept-label { color: rgba(255,255,255,0.85); }
+    .dept-icon { font-size: 2.5rem; margin-bottom: 12px; display: block; }
+    .dept-name { font-size: 0.88rem; font-weight: 700; margin-bottom: 4px; }
+    .dept-label { font-size: 0.68rem; color: #888; }
+
+    /* ===== FEATURES: HORIZONTAL ===== */
+    .features { background: #1a2c1a; color: white; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); }
+    .feature { padding: 48px 32px; border-right: 1px solid rgba(255,255,255,0.06); position: relative; overflow: hidden; transition: background 0.3s; }
+    .feature:last-child { border-right: none; }
+    .feature:hover { background: rgba(76,175,80,0.1); }
+    .feature-shape { position: absolute; top: -20px; right: -20px; width: 80px; height: 80px; background: rgba(76,175,80,0.08); border-radius: 50%; }
+    .feature-num { font-size: 3rem; font-weight: 900; color: rgba(76,175,80,0.2); line-height: 1; margin-bottom: 16px; }
+    .feature-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 10px; }
+    .feature-desc { font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.8; }
+
+    /* ===== DOCTORS ===== */
+    .doctors { padding: 80px 48px; background: #f8fcf8; }
+    .doctors-header { text-align: center; margin-bottom: 56px; }
+    .doctors-header h2 { font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 900; }
+    .doctors-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 900px; margin: 0 auto; }
+    .doctor-card { background: white; border-radius: 24px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.06); transition: transform 0.3s; }
+    .doctor-card:hover { transform: translateY(-6px); }
+    .doctor-photo { height: 200px; display: flex; align-items: center; justify-content: center; font-size: 6rem; }
+    .doctor-card:nth-child(1) .doctor-photo { background: #e8f5e9; }
+    .doctor-card:nth-child(2) .doctor-photo { background: #e3f2fd; }
+    .doctor-card:nth-child(3) .doctor-photo { background: #fce4ec; }
+    .doctor-body { padding: 28px 24px; }
+    .doctor-specialty { font-size: 0.65rem; font-weight: 700; color: #4caf50; letter-spacing: 0.15em; margin-bottom: 8px; }
+    .doctor-name { font-size: 1.1rem; font-weight: 800; margin-bottom: 4px; }
+    .doctor-career { font-size: 0.75rem; color: #888; margin-bottom: 12px; }
+    .doctor-desc { font-size: 0.8rem; color: #555; line-height: 1.8; }
+
+    /* ===== VOICE ===== */
+    .voice { padding: 80px 48px; }
+    .voice-header { text-align: center; margin-bottom: 56px; }
+    .voice-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 900px; margin: 0 auto; }
+    .voice-card { border-radius: 20px; padding: 28px 24px; }
+    .voice-card:nth-child(1) { background: #f0faf0; }
+    .voice-card:nth-child(2) { background: #e3f2fd; }
+    .voice-card:nth-child(3) { background: #fce4ec; }
+    .voice-pet { font-size: 2rem; margin-bottom: 12px; display: block; }
+    .voice-stars { color: #ffa000; font-size: 0.9rem; margin-bottom: 10px; }
+    .voice-text { font-size: 0.82rem; line-height: 1.9; margin-bottom: 14px; }
+    .voice-author { font-size: 0.72rem; color: #888; }
+
+    /* ===== ACCESS ===== */
+    .access { padding: 80px 48px; background: #f0faf0; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+    .access h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 900; margin-bottom: 32px; }
+    .access-info { list-style: none; display: flex; flex-direction: column; gap: 0; }
+    .info-row { display: flex; gap: 0; border-bottom: 1px solid #d0e8d0; }
+    .info-th { background: #4caf50; color: white; padding: 14px 16px; font-size: 0.72rem; font-weight: 700; width: 100px; flex-shrink: 0; display: flex; align-items: center; }
+    .info-td { padding: 14px 16px; font-size: 0.85rem; display: flex; align-items: center; }
+    .map-box { background: white; border-radius: 16px; min-height: 260px; display: flex; align-items: center; justify-content: center; color: #888; font-size: 0.82rem; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+
+    /* ===== CTA ===== */
+    .cta { background: #4caf50; padding: 80px 48px; text-align: center; color: white; }
+    .cta h2 { font-size: clamp(2rem, 5vw, 4rem); font-weight: 900; margin-bottom: 16px; line-height: 1.2; }
+    .cta p { opacity: 0.85; margin-bottom: 48px; font-size: 1rem; }
+    .cta-actions { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .btn-white { display: inline-flex; align-items: center; gap: 10px; padding: 18px 36px; background: white; color: #4caf50; text-decoration: none; border-radius: 12px; font-weight: 800; font-size: 1rem; transition: all 0.3s; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+    .btn-white:hover { transform: translateY(-2px); }
+    .btn-emergency { display: inline-flex; align-items: center; gap: 10px; padding: 18px 36px; background: #ff4757; color: white; text-decoration: none; border-radius: 12px; font-weight: 800; font-size: 1rem; transition: all 0.3s; }
+    .btn-emergency:hover { background: #ff2d3a; transform: translateY(-2px); }
+
+    footer { background: #1a2c1a; color: rgba(255,255,255,0.35); text-align: center; padding: 28px; font-size: 0.75rem; }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 16px; }
+      .nav-tel { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 48px 20px; }
+      .hero-visual { display: flex; justify-content: center; }
+      .hero-main-shape { width: 240px; height: 240px; font-size: 5rem; }
+      .hero-hours { grid-template-columns: 1fr 1fr; }
+      .departments { padding: 60px 20px; }
+      .dept-grid { grid-template-columns: repeat(3, 1fr); }
+      .features { grid-template-columns: 1fr 1fr; }
+      .feature { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+      .doctors { padding: 60px 20px; }
+      .doctors-grid { grid-template-columns: 1fr; }
+      .voice { padding: 60px 20px; }
+      .voice-grid { grid-template-columns: 1fr; }
+      .access { grid-template-columns: 1fr; padding: 60px 20px; }
+      .cta { padding: 60px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="emergency">🆘 夜間緊急ダイヤル: 0120-XXX-XXX（22:00〜翌6:00）</div>
+
+  <nav>
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-shape">🐾</div>
+      <span class="nav-logo-text">にじの動物病院</span>
+    </a>
+    <div class="nav-right">
+      <span class="nav-tel">📞 03-XXXX-XXXX</span>
+      <a href="tel:0120000000" class="nav-emergency">🆘 緊急</a>
+      <a href="#cta" class="nav-reserve">📅 予約する</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="geo-circle-1"></div>
+    <div class="geo-circle-2"></div>
+    <div class="geo-rect"></div>
+
+    <div class="hero-content">
+      <div class="hero-tags">
+        <span class="hero-tag green">🐕 犬・猫</span>
+        <span class="hero-tag outline">夜間緊急対応</span>
+        <span class="hero-tag outline">駐車場あり</span>
+      </div>
+      <h1>
+        家族の一員を、<br>
+        <span class="line-green">全力</span>で守る。
+      </h1>
+      <p class="hero-desc">
+        予防から緊急まで、あなたのペットの健康を<br>
+        トータルサポート。夜間緊急ダイヤル完備で<br>
+        24時間安心できる動物病院です。
+      </p>
+      <div class="hero-btns">
+        <a href="#cta" class="btn-green">📅 診察を予約する</a>
+        <a href="tel:0120000000" class="btn-red-outline">🆘 緊急ダイヤル</a>
+      </div>
+      <div class="hero-hours">
+        <div class="hour-chip"><div class="day">月〜金</div><div class="time">9:00〜20:00</div></div>
+        <div class="hour-chip"><div class="day">土・日・祝</div><div class="time">9:00〜18:00</div></div>
+        <div class="hour-chip"><div class="day">夜間緊急</div><div class="time">22:00〜翌6:00</div></div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-main-shape">🐕</div>
+      <div class="hero-floating f1">⭐ Google 4.9</div>
+      <div class="hero-floating f2">🏥 創業20年</div>
+    </div>
+  </section>
+
+  <section class="departments">
+    <div class="dept-header">
+      <h2>診療科目</h2>
+    </div>
+    <div class="dept-grid">
+      <div class="dept-card"><span class="dept-icon">💉</span><div class="dept-name">一般診療</div><div class="dept-label">内科・外科</div></div>
+      <div class="dept-card"><span class="dept-icon">🦷</span><div class="dept-name">歯科</div><div class="dept-label">歯石・口腔ケア</div></div>
+      <div class="dept-card"><span class="dept-icon">🔬</span><div class="dept-name">検査・診断</div><div class="dept-label">血液・レントゲン</div></div>
+      <div class="dept-card"><span class="dept-icon">✂️</span><div class="dept-name">手術</div><div class="dept-label">避妊・去勢含む</div></div>
+      <div class="dept-card"><span class="dept-icon">💊</span><div class="dept-name">皮膚科</div><div class="dept-label">アレルギー・炎症</div></div>
+      <div class="dept-card"><span class="dept-icon">🫀</span><div class="dept-name">循環器科</div><div class="dept-label">心臓・血圧管理</div></div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="feature"><div class="feature-shape"></div><div class="feature-num">01</div><div class="feature-title">夜間緊急対応</div><p class="feature-desc">22時〜翌6時の夜間緊急ダイヤル完備。いざという時に頼れる病院です。</p></div>
+    <div class="feature"><div class="feature-shape"></div><div class="feature-num">02</div><div class="feature-title">最新設備</div><p class="feature-desc">MRI・CT・エコーなど最新機器を完備。精密な診断を迅速に行います。</p></div>
+    <div class="feature"><div class="feature-shape"></div><div class="feature-num">03</div><div class="feature-title">専門医在籍</div><p class="feature-desc">外科・内科・皮膚科・循環器科の専門医が常勤しています。</p></div>
+    <div class="feature"><div class="feature-shape"></div><div class="feature-num">04</div><div class="feature-title">ペット保険対応</div><p class="feature-desc">主要ペット保険すべてに対応。窓口清算もOKです。</p></div>
+  </section>
+
+  <section class="doctors">
+    <div class="doctors-header">
+      <h2>獣医師紹介</h2>
+    </div>
+    <div class="doctors-grid">
+      <div class="doctor-card"><div class="doctor-photo">👨‍⚕️</div><div class="doctor-body"><div class="doctor-specialty">院長 / 外科・一般内科</div><div class="doctor-name">田村 誠一</div><div class="doctor-career">東京農工大学 農学部 卒業</div><p class="doctor-desc">獣医師歴25年。外科手術から内科治療まで幅広く対応。「動物も家族の一員」という信念で診療します。</p></div></div>
+      <div class="doctor-card"><div class="doctor-photo">👩‍⚕️</div><div class="doctor-body"><div class="doctor-specialty">副院長 / 皮膚科・眼科</div><div class="doctor-name">森田 あかり</div><div class="doctor-career">日本大学 獣医学科 卒業</div><p class="doctor-desc">皮膚病・アレルギーのスペシャリスト。猫の診療が得意で、怖がりな子にも優しく対応します。</p></div></div>
+      <div class="doctor-card"><div class="doctor-photo">👨‍⚕️</div><div class="doctor-body"><div class="doctor-specialty">獣医師 / 循環器・内科</div><div class="doctor-name">中川 大輔</div><div class="doctor-career">麻布大学 獣医学部 卒業</div><p class="doctor-desc">心臓病・慢性疾患の管理を専門とする。高齢ペットのQOL向上に力を入れています。</p></div></div>
+    </div>
+  </section>
+
+  <section class="voice">
+    <div class="voice-header">
+      <h2 style="font-size:clamp(1.5rem,3vw,2.5rem);font-weight:900;">飼い主さんの声</h2>
+    </div>
+    <div class="voice-grid">
+      <div class="voice-card"><span class="voice-pet">🐕</span><div class="voice-stars">★★★★★</div><p class="voice-text">夜中に急に具合が悪くなった時、緊急ダイヤルで繋がれて本当に助かりました。先生が丁寧に診てくれて、今は元気です。</p><div class="voice-author">40代 / ゴールデン飼育 / T.Nさん</div></div>
+      <div class="voice-card"><span class="voice-pet">🐈</span><div class="voice-stars">★★★★★</div><p class="voice-text">猫が病院嫌いでいつも暴れるのに、ここの先生はうまく接してくれて静かに診てもらえました。皮膚病もすっかり治りました。</p><div class="voice-author">30代 / 猫2匹 / M.Kさん</div></div>
+      <div class="voice-card"><span class="voice-pet">🐕</span><div class="voice-stars">★★★★★</div><p class="voice-text">心臓病の老犬を診てもらっています。薬の管理や食事の相談まで細かく対応してくれて感謝しています。</p><div class="voice-author">60代 / チワワ飼育 / K.Sさん</div></div>
+    </div>
+  </section>
+
+  <section class="access">
+    <div>
+      <h2>病院案内</h2>
+      <div class="access-info">
+        <div class="info-row"><div class="info-th">病院名</div><div class="info-td">にじの動物病院</div></div>
+        <div class="info-row"><div class="info-th">住所</div><div class="info-td">東京都世田谷区三軒茶屋1-2-3</div></div>
+        <div class="info-row"><div class="info-th">電話</div><div class="info-td">03-XXXX-XXXX</div></div>
+        <div class="info-row"><div class="info-th">診療時間</div><div class="info-td">月〜金 9:00〜20:00 / 土日祝 9:00〜18:00</div></div>
+        <div class="info-row"><div class="info-th">夜間緊急</div><div class="info-td">22:00〜翌6:00（緊急ダイヤル使用）</div></div>
+        <div class="info-row"><div class="info-th">アクセス</div><div class="info-td">東急田園都市線 三軒茶屋駅 北口 徒歩5分</div></div>
+        <div class="info-row"><div class="info-th">駐車場</div><div class="info-td">6台完備（無料）</div></div>
+      </div>
+    </div>
+    <div class="map-box">[ MAP ]</div>
+  </section>
+
+  <section class="cta" id="cta">
+    <h2>大切なペットの<br>健康を守ります</h2>
+    <p>定期的な健康診断で病気を早期発見。まずはお気軽にご予約ください。</p>
+    <div class="cta-actions">
+      <a href="#" class="btn-white">📅 診察を予約する</a>
+      <a href="tel:0120000000" class="btn-emergency">🆘 夜間緊急ダイヤル</a>
+    </div>
+  </section>
+
+  <footer>© 2024 にじの動物病院. ALL RIGHTS RESERVED.</footer>
+
+</body>
+</html>
